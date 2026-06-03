@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Sinh Vien</title>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 24px auto;
+      padding: 0 12px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 { margin-top: 0; }
+
+    .field { margin-bottom: 12px; }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input, button {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #ff6b4a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button:hover { opacity: 0.92; }
+
+    #map {
+      height: 360px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+
+    .total {
+      font-size: 18px;
+      font-weight: 700;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Thong tin checkout</h2>
+
+      <div class="field">
+        <label>Ho ten</label>
+        <input id="fullName" type="text" placeholder="Nhap ho ten" />
+      </div>
+
+      <div class="field">
+        <label>So dien thoai</label>
+        <input id="phone" type="text" placeholder="Nhap so dien thoai" />
+      </div>
+
+      <div class="field">
+        <label>Dia chi giao hang</label>
+        <input id="address" type="text" placeholder="Nhap dia chi giao hang" />
+      </div>
+
+      <button id="pickBtn" type="button">Chon vi tri tren ban do</button>
+      <div class="note">Bam vao ban do de chon vi tri giao hang.</div>
+
+      <div id="map"></div>
+      <div class="note" id="latLngText">Toa do: --</div>
+    </div>
+
+    <div class="card">
+      <h2>Tom tat don hang</h2>
+      <div class="row"><span>Tam tinh</span><strong id="subtotalText">120.000d</strong></div>
+      <div class="row"><span>Khoang cach</span><strong id="distanceText">--</strong></div>
+      <div class="row"><span>Phi giao hang</span><strong id="feeText">--</strong></div>
+      <div class="row total"><span>Tong tien</span><strong id="totalText">120.000d</strong></div>
+    </div>
+  </div>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script>
+    const STORE = { lat: 10.762622, lng: 106.660172 };
+    const subtotal = 120000;
+
+    const distanceText = document.getElementById("distanceText");
+    const feeText = document.getElementById("feeText");
+    const totalText = document.getElementById("totalText");
+    const subtotalText = document.getElementById("subtotalText");
+    const latLngText = document.getElementById("latLngText");
+    const pickBtn = document.getElementById("pickBtn");
+
+    subtotalText.textContent = formatVND(subtotal);
+    totalText.textContent = formatVND(subtotal);
+
+    const map = L.map("map").setView([STORE.lat, STORE.lng], 13);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    L.marker([STORE.lat, STORE.lng]).addTo(map).bindPopup("Cua hang").openPopup();
+
+    let customerMarker = null;
+    let canPick = false;
+
+    pickBtn.addEventListener("click", () => {
+      canPick = true;
+      pickBtn.textContent = "Dang chon... Bam vao ban do";
+    });
+
+    map.on("click", async (e) => {
+      if (!canPick) return;
+
+      const { lat, lng } = e.latlng;
+
+      if (customerMarker) map.removeLayer(customerMarker);
+      customerMarker = L.marker([lat, lng]).addTo(map).bindPopup("Vi tri giao hang").openPopup();
+
+      latLngText.textContent = `Toa do: ${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+      canPick = false;
+      pickBtn.textContent = "Chon vi tri tren ban do";
+
+      try {
+        const km = await getRouteDistanceKm(STORE, { lat, lng });
+        const fee = calcShippingFee(km);
+        const total = subtotal + fee;
+
+        distanceText.textContent = `${km.toFixed(2)} km`;
+        feeText.textContent = formatVND(fee);
+        totalText.textContent = formatVND(total);
+      } catch (err) {
+        alert("Khong tinh duoc khoang cach. Vui long thu lai.");
+        distanceText.textContent = "--";
+        feeText.textContent = "--";
+        totalText.textContent = formatVND(subtotal);
+      }
+    });
+
+    async function getRouteDistanceKm(origin, destination) {
+      const url = `https://router.project-osrm.org/route/v1/driving/${origin.lng},${origin.lat};${destination.lng},${destination.lat}?overview=false&alternatives=false`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (data.code !== "Ok" || !data.routes || !data.routes.length) {
+        throw new Error("OSRM failed");
+      }
+
+      const meters = data.routes[0].distance;
+      return meters / 1000;
+    }
+
+    function calcShippingFee(km) {
+      if (km <= 2) return 15000;
+      if (km <= 5) return 25000;
+      return 40000;
+    }
+
+    function formatVND(value) {
+      return Number(value).toLocaleString("vi-VN") + "d";
+    }
+  </script>
+</body>
+</html>

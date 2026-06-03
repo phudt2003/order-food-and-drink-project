@@ -1,0 +1,230 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-body: #f7f3ee;
+    --bg-app: #f7f3ee;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #f2ece5;
+
+    --text-primary: #2c2c2c;
+    --text-secondary: #6b6b6b;
+    --text-muted: #9a9a9a;
+
+    --text-main: var(--text-primary);
+    --text-dim: var(--text-secondary);
+
+    --accent: #c67c4e;
+    --header-text: #3b2f2f;
+    --header-hover: #c67c4e;
+    --nav-bg: rgba(247, 243, 238, 0.96);
+    --border-color: #e7d9cb;
+    --card-bg: #ffffff;
+    --logo-filter: none;
+}
+
+.dark,
+.dark-mode,
+[data-theme="dark"] {
+    --bg-body: #B48C6B;
+    --bg-app: #B48C6B;
+    --bg-surface: #F8F4E1;
+    --bg-surface-alt: #F1E8D6;
+
+    --text-primary: #3b2f2f;
+    --text-secondary: #6b4f3e;
+    --text-muted: #8a6f5c;
+
+    --text-main: var(--text-primary);
+    --text-dim: var(--text-secondary);
+
+    --accent: #C58940;
+    --header-text: #3b2f2f;
+    --header-hover: #7A5230;
+    --nav-bg: #2b2623;
+    --border-color: #d8c2ad;
+    --card-bg: #F8F4E1;
+    --logo-filter: none;
+}
+
+.dark-mode body,
+.dark body,
+[data-theme="dark"] body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+}
+
+
+.dark-mode .card,
+.dark-mode .product-info-card,
+.dark-mode .product-options-panel,
+.dark-mode .review-card,
+.dark-mode .product-reviews,
+.dark .card,
+.dark .product-info-card,
+.dark .product-options-panel,
+.dark .review-card,
+.dark .product-reviews,
+[data-theme="dark"] .card,
+[data-theme="dark"] .product-info-card,
+[data-theme="dark"] .product-options-panel,
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .product-reviews {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.dark-mode .add-to-cart-btn,
+.dark-mode .buy-now-btn,
+.dark-mode .signbutton,
+.dark .add-to-cart-btn,
+.dark .buy-now-btn,
+.dark .signbutton,
+[data-theme="dark"] .add-to-cart-btn,
+[data-theme="dark"] .buy-now-btn,
+[data-theme="dark"] .signbutton {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.dark-mode .add-to-cart-btn:hover,
+.dark-mode .buy-now-btn:hover,
+.dark-mode .signbutton:hover,
+.dark .add-to-cart-btn:hover,
+.dark .buy-now-btn:hover,
+.dark .signbutton:hover,
+[data-theme="dark"] .add-to-cart-btn:hover,
+[data-theme="dark"] .buy-now-btn:hover,
+[data-theme="dark"] .signbutton:hover {
+    background: var(--header-hover);
+    border-color: var(--header-hover);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Be Vietnam Pro', 'Segoe UI', Tahoma, sans-serif;
+    scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+    min-height: 100%;
+}
+
+@layer components {
+    .checkin-day {
+        @apply relative flex h-16 w-16 flex-col items-center justify-center rounded-xl border border-gray-300 bg-white font-semibold transition-all duration-200;
+    }
+
+    .checkin-done {
+        @apply bg-green-100 border-green-500 text-green-800;
+    }
+
+    .checkin-today {
+        @apply bg-yellow-100 border-yellow-500 text-yellow-700;
+    }
+
+    .checkin-available {
+        @apply cursor-pointer hover:border-yellow-500 hover:scale-105;
+    }
+
+    .checkin-future {
+        @apply cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400;
+    }
+
+    .animate-popupFade {
+        animation: popupFade 0.25s ease-out forwards;
+    }
+
+    .animate-overlayFade {
+        animation: overlayFade 0.18s ease-out forwards;
+    }
+
+    .animate-modalPop {
+        animation: modalPop 0.22s ease-out forwards;
+    }
+}
+
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes overlayFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: color 0.25s ease, background-color 0.25s ease;
+    overflow-x: hidden;
+}
+
+/* Container chính */
+.app {
+    width: 80%;
+    margin: auto;
+    padding-top: 12px;
+    animation: fadeIn 0.8s ease-in-out;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+@media (max-width: 900px) {
+    .app {
+        width: 100%;
+        padding: 12px 16px 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

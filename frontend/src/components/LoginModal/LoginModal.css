@@ -1,0 +1,126 @@
+﻿﻿.login-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+}
+
+.login-modal-content {
+  position: fixed;
+  z-index: 1100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: popupFade 0.25s ease-out forwards;
+  width: min(520px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  background: var(--card-bg, #ffffff);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-main, #333333);
+}
+
+.login-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px calc(24px + env(safe-area-inset-bottom));
+  background: var(--bg-body);
+}
+
+.login-page-inner {
+  width: min(520px, 100%);
+  background: var(--card-bg, #ffffff);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+
+.login-page-inner--signup {
+  width: min(460px, 100%);
+  padding: 18px;
+}
+
+.login-page-note {
+  margin-bottom: 12px;
+  color: var(--text-muted, #666666);
+}
+
+.login-back-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent, #d36d31);
+}
+
+.clerk-signin-card {
+  box-shadow: none;
+  width: 100%;
+  margin: 0;
+  border: 0;
+}
+
+.clerk-root-box,
+.clerk-card-box {
+  width: 100%;
+}
+
+.clerk-root-box--signup,
+.clerk-card-box--signup,
+.clerk-signup-card {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.clerk-primary-btn {
+  background: var(--accent, #d36d31);
+}
+
+.clerk-social-btn {
+  border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .login-modal-content {
+    width: calc(100vw - 16px);
+    max-height: calc(100vh - 16px);
+    padding: 16px 12px;
+  }
+
+  .login-page {
+    padding-top: 16px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .login-page-inner {
+    padding: 16px;
+    max-height: calc(100vh - 32px);
+    max-height: calc(100svh - 32px);
+    overflow-y: auto;
+  }
+
+  .login-page-inner--signup {
+    width: 100%;
+    padding: 14px;
+  }
+
+  .login-page-note {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}

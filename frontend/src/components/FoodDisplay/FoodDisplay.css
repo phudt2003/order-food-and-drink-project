@@ -1,0 +1,130 @@
+﻿.food-display {
+    margin-top: 30px;
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.food-display h2 {
+    font-size: max(2vw, 24px);
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.food-display-toolbar {
+    margin-top: 14px;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-display-search {
+    width: min(100%, 560px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--card-bg);
+    padding: 10px 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.food-display-search-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.food-display-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.food-display-search input::placeholder {
+    color: var(--text-muted);
+}
+
+.food-display-result-count {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.food-display-empty {
+    margin-top: 22px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-secondary);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.food-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    margin-top: 22px;
+    gap: 30px;
+    row-gap: 50px;
+}
+
+.food-display-pagination {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.food-display-page-btn {
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    min-width: 40px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.18s ease;
+}
+
+.food-display-page-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.food-display-page-btn.is-active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.food-display-page-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.food-display-page-dots {
+    min-width: 18px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .food-display-search {
+        width: 100%;
+    }
+
+    .food-display-result-count {
+        font-size: 13px;
+    }
+}

@@ -1,0 +1,165 @@
+﻿/* ===============================
+   PLACE ORDER PAGE
+=================================*/
+
+.place-order{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    margin-top: 100px;
+    flex-wrap: wrap;
+}
+
+/* ---------- LEFT SIDE ---------- */
+
+.place-order-left{
+    flex: 1;
+    width: 100%;
+    max-width: 500px;
+}
+
+.place-order-left .title{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+/* INPUT */
+
+.place-order-left input{
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #c5c5c5;
+    outline-color: tomato;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+/* INPUT FOCUS */
+
+.place-order-left input:focus{
+    border-color: tomato;
+}
+
+/* MULTI FIELD (FIRST + LAST NAME) */
+
+.multi-fields{
+    display: flex;
+    gap: 15px;
+}
+
+.multi-fields input{
+    flex: 1;
+}
+
+/* ---------- RIGHT SIDE ---------- */
+
+.place-order-right{
+    flex: 1;
+    width: 100%;
+    max-width: 500px;
+}
+
+.place-order .cart-total button{
+    margin-top: 30px;
+    width: 100%;
+}
+
+
+/* ===============================
+   DARK / LIGHT MODE
+=================================*/
+
+/* DARK MODE (default) */
+
+:root .place-order input{
+    background-color: black;
+    color: white;
+}
+
+:root .place-order input::placeholder{
+    color: #dddddd;
+}
+
+:root .title{
+    color: white;
+}
+
+/* LIGHT MODE */
+
+.lightcolors .place-order input{
+    background-color: white;
+    color: black;
+}
+
+.lightcolors .place-order input::placeholder{
+    color: #555;
+}
+
+.lightcolors .title{
+    color: black;
+}
+
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+
+/* TABLET */
+@media (max-width: 992px){
+
+    .place-order{
+        gap: 40px;
+    }
+
+    .place-order-left .title{
+        font-size: 26px;
+    }
+}
+
+
+/* MOBILE */
+@media (max-width: 768px){
+
+    .place-order{
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 30px;
+    }
+
+    .place-order-left,
+    .place-order-right{
+        max-width: 100%;
+    }
+
+    .place-order-left .title{
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .multi-fields{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .place-order-left input{
+        padding: 14px;
+        font-size: 16px; /* tránh zoom iOS */
+    }
+}
+
+
+/* SMALL MOBILE */
+@media (max-width: 480px){
+
+    .place-order{
+        margin-top: 30px;
+    }
+
+    .place-order-left .title{
+        font-size: 22px;
+    }
+}

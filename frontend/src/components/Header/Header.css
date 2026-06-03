@@ -1,0 +1,154 @@
+﻿.hero {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    height: calc(45vw + 50px);
+    min-height: 310px;
+    max-height: 610px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.18)
+    );
+}
+
+.hero-content {
+    position: absolute;
+    z-index: 20;
+    top: 50%;
+    left: 6vw;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1vw;
+    max-width: 50%;
+    width: calc(100% - 12vw);
+    color: #ffffff;
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-content h1 {
+    font-size: max(4.5vw, 22px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #ffffff !important;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-title-mobile,
+.hero-desc-mobile {
+    display: none;
+}
+
+.hero-content p {
+    font-size: 1vw;
+    line-height: 1.6;
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.48);
+    opacity: 1;
+    visibility: visible;
+}
+
+[data-theme="light"] .hero::before {
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.18)
+    );
+}
+
+[data-theme="dark"] .hero::before {
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.22)
+    );
+}
+
+[data-theme="light"] .hero-content,
+[data-theme="light"] .hero-content h1,
+[data-theme="light"] .hero-content p,
+[data-theme="dark"] .hero-content,
+[data-theme="dark"] .hero-content h1,
+[data-theme="dark"] .hero-content p {
+    color: #ffffff;
+}
+
+/* fallback for dark class mode */
+.dark .hero::before {
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.22)
+    );
+}
+
+.dark .hero-content,
+.dark .hero-content h1,
+.dark .hero-content p {
+    color: #ffffff;
+}
+
+@media (max-width: 1050px) {
+    .hero-content {
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 280px;
+    }
+
+    .hero-content {
+        max-width: 65%;
+        width: calc(100% - 12vw);
+        top: 50%;
+        transform: translateY(-50%);
+        overflow: visible;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    .hero-title-desktop,
+    .hero-desc-desktop {
+        display: none;
+    }
+
+    .hero-title-mobile {
+        display: block;
+        max-width: 100%;
+    }
+
+    .hero-desc-mobile {
+        display: block;
+        overflow: visible;
+        white-space: normal;
+        text-overflow: clip;
+        font-size: 11px;
+        line-height: 1.4;
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,386 @@
+﻿.my-orders {
+    margin: 60px auto;
+    max-width: 1000px;
+    padding: 0 20px;
+}
+
+/* TITLE */
+.myordersp {
+    font-size: 28px;
+    font-weight: 600;
+    color: #6F4E37;
+    margin-bottom: 25px;
+}
+
+/* LIST */
+.my-orders .container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ORDER CARD */
+.my-orders-order {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 14px;
+    background: #FFF8F0;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.my-orders-order:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ICON */
+.my-orders-order img {
+    width: 55px;
+    background: #F5EFE6;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* TEXT AREA */
+.my-orders-order p {
+    margin: 0;
+    color: #2C2C2C;
+}
+
+/* ITEMS */
+.my-orders-order p:nth-child(2) {
+    flex: 2;
+    font-weight: 500;
+}
+
+/* PRICE */
+.my-orders-order p:nth-child(3) {
+    font-weight: 600;
+    color: #6F4E37;
+}
+
+/* STATUS */
+.my-orders-order span {
+    color: #C58940;
+    font-size: 18px;
+}
+
+/* BUTTON */
+.my-orders-order button {
+    margin-left: auto;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #6F4E37;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.my-orders-order button:hover {
+    background: #5a3f2c;
+}
+
+/* Frontend order buttons - synced with admin color system */
+.btn-primary,
+.btn-secondary,
+.btn-success,
+.btn-danger,
+.btn-close-red {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    background: #B48C6B;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #9f7657;
+}
+
+.btn-secondary {
+    background: rgb(8, 145, 178);
+    color: #ffffff;
+    border-color: rgb(8, 145, 178);
+}
+
+.btn-secondary:hover {
+    background: #067f95;
+}
+
+.btn-outline-coffee {
+    background: transparent;
+    color: #7A5230;
+    border: 1px solid #7A5230;
+}
+
+.btn-outline-coffee:hover {
+    background: #7A5230;
+    color: #ffffff;
+}
+
+.btn-success {
+    color: #1a7f37;
+    background: #e8f7ee;
+    border-color: #c8ead3;
+}
+
+.btn-danger {
+    color: #d93025;
+    background: #fdecea;
+    border-color: #f5c2c0;
+}
+
+.btn-close-red {
+    background: rgb(239, 68, 68);
+    color: #ffffff;
+    border-color: rgb(239, 68, 68);
+}
+
+.btn-close-red:hover {
+    background: #dc2626;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-outline-coffee:disabled,
+.btn-success:disabled,
+.btn-danger:disabled,
+.btn-close-red:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Dark mode button tone for readability */
+.dark .myorders-page .btn-secondary,
+.dark-mode .myorders-page .btn-secondary,
+[data-theme="dark"] .myorders-page .btn-secondary {
+    background: rgb(8, 145, 178);
+    color: #ffffff;
+    border-color: rgb(8, 145, 178);
+}
+
+.dark .myorders-page .btn-secondary:hover,
+.dark-mode .myorders-page .btn-secondary:hover,
+[data-theme="dark"] .myorders-page .btn-secondary:hover {
+    background: #067f95;
+}
+
+.dark .myorders-page .btn-outline-coffee,
+.dark-mode .myorders-page .btn-outline-coffee,
+[data-theme="dark"] .myorders-page .btn-outline-coffee {
+    background: rgba(122, 82, 48, 0.12);
+    color: #f1e6d6;
+    border: 1px solid #7A5230;
+}
+
+.dark .myorders-page .btn-outline-coffee:hover,
+.dark-mode .myorders-page .btn-outline-coffee:hover,
+[data-theme="dark"] .myorders-page .btn-outline-coffee:hover {
+    background: #7A5230;
+    color: #ffffff;
+}
+
+/* Order status badge */
+.order-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.order-status-success {
+    color: #1a7f37;
+    background: #e8f7ee;
+    border-color: #c8ead3;
+}
+
+.order-status-danger {
+    color: #d93025;
+    background: #fdecea;
+    border-color: #f5c2c0;
+}
+
+.order-status-neutral {
+    color: #333333;
+    background: #f1f1f1;
+    border-color: #dddddd;
+}
+
+/* Dark mode overrides for MyOrders page */
+.dark .myorders-page,
+.dark-mode .myorders-page,
+[data-theme="dark"] .myorders-page {
+    background-color: #FDFCF0;
+    color: var(--text-primary);
+}
+
+.dark .myorders-page h2,
+.dark-mode .myorders-page h2,
+[data-theme="dark"] .myorders-page h2 {
+    color: var(--text-primary);
+}
+
+.dark .myorders-page .max-w-4xl,
+.dark-mode .myorders-page .max-w-4xl,
+[data-theme="dark"] .myorders-page .max-w-4xl {
+    color: var(--text-primary);
+}
+
+.dark .myorders-page .bg-white,
+.dark-mode .myorders-page .bg-white,
+[data-theme="dark"] .myorders-page .bg-white {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dark .myorders-page .text-gray-800,
+.dark-mode .myorders-page .text-gray-800,
+[data-theme="dark"] .myorders-page .text-gray-800 {
+    color: var(--text-primary) !important;
+}
+
+.dark .myorders-page .text-gray-700,
+.dark-mode .myorders-page .text-gray-700,
+[data-theme="dark"] .myorders-page .text-gray-700 {
+    color: var(--text-secondary) !important;
+}
+
+.dark .myorders-page .text-gray-600,
+.dark-mode .myorders-page .text-gray-600,
+[data-theme="dark"] .myorders-page .text-gray-600 {
+    color: var(--text-secondary) !important;
+}
+
+.dark .myorders-page .text-gray-500,
+.dark-mode .myorders-page .text-gray-500,
+[data-theme="dark"] .myorders-page .text-gray-500 {
+    color: var(--text-muted) !important;
+}
+
+.dark .myorders-page .border-gray-100,
+.dark-mode .myorders-page .border-gray-100,
+[data-theme="dark"] .myorders-page .border-gray-100 {
+    border-color: var(--border-color) !important;
+}
+
+.dark .myorders-page .bg-gray-100,
+.dark-mode .myorders-page .bg-gray-100,
+[data-theme="dark"] .myorders-page .bg-gray-100 {
+    background-color: var(--bg-surface-alt) !important;
+}
+
+.dark .myorders-page .order-status-neutral,
+.dark-mode .myorders-page .order-status-neutral,
+[data-theme="dark"] .myorders-page .order-status-neutral {
+    color: var(--text-primary);
+    background: var(--bg-surface-alt);
+    border-color: var(--border-color);
+}
+
+.dark .myorders-page input,
+.dark .myorders-page textarea,
+.dark-mode .myorders-page input,
+.dark-mode .myorders-page textarea,
+[data-theme="dark"] .myorders-page input,
+[data-theme="dark"] .myorders-page textarea {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.dark .myorders-page input::placeholder,
+.dark .myorders-page textarea::placeholder,
+.dark-mode .myorders-page input::placeholder,
+.dark-mode .myorders-page textarea::placeholder,
+[data-theme="dark"] .myorders-page input::placeholder,
+[data-theme="dark"] .myorders-page textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.dark .myorders-page .bg-gray-50,
+.dark-mode .myorders-page .bg-gray-50,
+[data-theme="dark"] .myorders-page .bg-gray-50 {
+    background-color: var(--bg-surface-alt) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dark .myorders-page .bg-gray-100,
+.dark-mode .myorders-page .bg-gray-100,
+[data-theme="dark"] .myorders-page .bg-gray-100 {
+    background-color: var(--bg-surface-alt) !important;
+}
+
+.dark .myorders-page .text-gray-400,
+.dark-mode .myorders-page .text-gray-400,
+[data-theme="dark"] .myorders-page .text-gray-400 {
+    color: var(--text-muted) !important;
+}
+
+.dark .myorders-page .border-gray-200,
+.dark-mode .myorders-page .border-gray-200,
+[data-theme="dark"] .myorders-page .border-gray-200 {
+    border-color: var(--border-color) !important;
+}
+
+.dark .myorders-page .tracking-modal .bg-amber-50,
+.dark-mode .myorders-page .tracking-modal .bg-amber-50,
+[data-theme="dark"] .myorders-page .tracking-modal .bg-amber-50 {
+    background: #f7edd8 !important;
+    border-color: #e2c8a8 !important;
+    color: var(--text-primary) !important;
+}
+
+.dark .myorders-page .tracking-modal .text-amber-700,
+.dark-mode .myorders-page .tracking-modal .text-amber-700,
+[data-theme="dark"] .myorders-page .tracking-modal .text-amber-700 {
+    color: #7A5230 !important;
+}
+
+.dark .myorders-page .tracking-modal .text-amber-600,
+.dark-mode .myorders-page .tracking-modal .text-amber-600,
+[data-theme="dark"] .myorders-page .tracking-modal .text-amber-600 {
+    color: #9b6b45 !important;
+}
+
+.dark .myorders-page .tracking-modal .bg-green-50,
+.dark-mode .myorders-page .tracking-modal .bg-green-50,
+[data-theme="dark"] .myorders-page .tracking-modal .bg-green-50 {
+    background: #e8f7ee !important;
+    border-color: #c8ead3 !important;
+}
+
+.dark .myorders-page .tracking-modal .bg-gray-50,
+.dark-mode .myorders-page .tracking-modal .bg-gray-50,
+[data-theme="dark"] .myorders-page .tracking-modal .bg-gray-50 {
+    background: var(--bg-surface-alt) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dark .myorders-page .tracking-modal .text-gray-800,
+.dark-mode .myorders-page .tracking-modal .text-gray-800,
+[data-theme="dark"] .myorders-page .tracking-modal .text-gray-800 {
+    color: var(--text-primary) !important;
+}
+
+.dark .myorders-page .tracking-modal .text-gray-500,
+.dark-mode .myorders-page .tracking-modal .text-gray-500,
+[data-theme="dark"] .myorders-page .tracking-modal .text-gray-500 {
+    color: var(--text-muted) !important;
+}
