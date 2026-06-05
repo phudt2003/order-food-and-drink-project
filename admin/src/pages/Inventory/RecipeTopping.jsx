@@ -289,7 +289,7 @@ const RecipeTopping = ({ url }) => {
             <p className="text-sm text-stone-500">Công thức để sản xuất topping, trừ nguyên liệu khi sản xuất.</p>
           </div>
           <button type="button" className="btn btn-cancel" onClick={loadBootstrap} disabled={loading}>
-            {loading ? "Đang tải..." : "Tái tải"}
+            {loading ? "Đang tải..." : "Tải lại"}
           </button>
         </div>
 

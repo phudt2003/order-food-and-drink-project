@@ -115,7 +115,7 @@ const ProductionTopping = ({ url }) => {
             <p className="text-sm text-stone-500">Chọn topping • nhập số lượng • trừ nguyên liệu • tăng kho.</p>
           </div>
           <button type="button" className="btn btn-cancel" onClick={load} disabled={loading}>
-            {loading ? "Đang tải..." : "Tái tải"}
+            {loading ? "Đang tải..." : "Tải lại"}
           </button>
         </div>
 

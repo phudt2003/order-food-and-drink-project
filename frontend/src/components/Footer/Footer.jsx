@@ -40,10 +40,18 @@ const Footer = () => {
         <div className="footer-content-right">
           <h2>LIÊN HỆ</h2>
           <ul>
-            <li>SĐT: 0354512206</li>
+            <li>
+              SĐT:{" "}
+              <a href="tel:+84354512206" aria-label="Gọi số 0354512206">
+                0354512206
+              </a>
+            </li>
             <li>
               Email:{" "}
-              <a href="mailto:duongtrongphu2003@gmail.com">
+              <a
+                href="mailto:duongtrongphu2003@gmail.com"
+                aria-label="Gửi email tới duongtrongphu2003@gmail.com"
+              >
                 duongtrongphu2003@gmail.com
               </a>
             </li>
