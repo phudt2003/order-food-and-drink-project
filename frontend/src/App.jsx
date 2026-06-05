@@ -368,7 +368,7 @@ const App = () => {
         </Routes>
       </div>
 
-      <div className='hidden md:block'>
+      <div className='pb-20 md:pb-0'>
         <Footer />
       </div>
     </div>
