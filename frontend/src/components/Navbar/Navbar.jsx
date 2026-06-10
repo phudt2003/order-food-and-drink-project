@@ -69,7 +69,7 @@ const Navbar = () => {
       { to: '/', label: 'Trang chủ' },
       { to: '/menu', label: 'Thực đơn' },
       { to: '/mobile-app', label: 'Ứng dụng' },
-      { to: '/contact', label: 'Liên hệ' },
+      { to: '/contact#footer', label: 'Liên hệ' },
     ],
     []
   )
